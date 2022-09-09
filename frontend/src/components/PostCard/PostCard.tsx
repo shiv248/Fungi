@@ -4,63 +4,71 @@ import { FaRegHeart, FaHeart, FaRegCommentAlt, FaShare } from "react-icons/fa";
 
 const PostCard = (prop) => {
   console.log(prop.title);
-  console.log(prop.thumbnailUrl);
- const [data, setData] = React.useState({
-     "albumId": 1,
+  const [data, setData] = React.useState({
+     "gameTitle": prop.gameTitle,
      "id": 1,
      "title": prop.title,
      "url": prop.url,
      "thumbnailUrl": prop.thumbnailUrl
    });
-   const [comments, setComments] = React.useState({}); 
 
- return (
-   <div className="card">
-     <div className="cardTop">
-       <div className="gameTitle">
-          <h5>Wave: The Game</h5>
+  const [comments, setComments] = React.useState({});
+  useEffect(() => {
+    setData({
+      "gameTitle": prop.gameTitle,
+      "id": 1,
+      "title": prop.title,
+      "url": prop.url,
+      "thumbnailUrl": prop.thumbnailUrl
+    })
+  },[prop])
+   return (
+     <div className="card">
+       <div className="cardTop">
+         <div className="gameTitle">
+            <h5>{data.gameTitle}</h5>
+          </div>
+          <div className="cardImage">
+          <a href={data.thumbnailUrl}>
+              <img src={data.url} alt="" />
+            </a>
+          </div>
         </div>
-        <div className="cardImage">
-        <a href={data.thumbnailUrl}>
-            <img src={data.url} alt="" />
-          </a>
-        </div>
-      </div>
-        <div className="card-body">
-        <section className="one">
-          <h2>{data.title}</h2>
-        </section>
-        <section className="two">
-          <p>
-            King Clown
-          </p>
+          <div className="card-body">
+          <section className="one">
+            <h2>{data.title}</h2>
           </section>
-          <section className="three">
-          {/*<FaHeart />*/}
+          <section className="two">
+            <p>
+              King Clown
+            </p>
+            </section>
+            <section className="three">
+            {/*<FaHeart />*/}
+              <div className="iconTop">
+                <FaRegHeart />
+              </div>
+              <div className="numberBot">
+                23
+              </div>
+            </section>
+            <section className="four">
             <div className="iconTop">
-              <FaRegHeart />
+              <FaRegCommentAlt />
             </div>
             <div className="numberBot">
               23
             </div>
-          </section>
-          <section className="four">
-          <div className="iconTop">
-            <FaRegCommentAlt />
+            </section>
+            <section className="five">
+            <div className="iconTop">
+              <FaShare />
+            </div>
+            </section>
           </div>
-          <div className="numberBot">
-            23
-          </div>
-          </section>
-          <section className="five">
-          <div className="iconTop">
-            <FaShare />
-          </div>
-          </section>
         </div>
-      </div>
- );
-};
+   );
+  };
 
 export default PostCard;
 
