@@ -62,29 +62,32 @@ class CreatePost extends React.Component {
     if(this.state.overlay){
       return (
         <div>
-        <div className="createPostButton">
-          <button onClick={this.handleOverlay}>Click Me!</button>
-        </div>
-        <div className="CreatePost">
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Post Title:
-            <input name="postTitle" type="text" value={this.state.value} onChange={this.handleChange} />
-          </label>
-          <label>
-            Game Title:
-            <input name="gameTitle" type="text" value={this.state.value} onChange={this.handleChange} />
-          </label>
-          <label>
-            Image Upload:
-            <input name="selectedImageFile" type="file" value={this.state.value} accept="image/*" onChange={this.handleChange} />
-          </label>
-          {this.previewPost()}
-          <div className="CreatePostSubmit">
-            <input type="submit" value="Submit" />
+          <div className="CreatePost">
+            <form onSubmit={this.handleSubmit}>
+            <button onClick={this.handleOverlay} className="exitButton" type="button">X</button>
+              <label>
+                Post Title:
+                <input name="postTitle" type="text" value={this.state.value} onChange={this.handleChange} />
+              </label>
+              <label>
+                Game Title:
+                <input name="gameTitle" type="text" value={this.state.value} onChange={this.handleChange} />
+              </label>
+              <label>
+                Image Upload:
+                <input name="selectedImageFile" type="file" value={this.state.value} accept="image/*" onChange={this.handleChange} />
+              </label>
+              {this.previewPost()}
+              <div className="CreatePostSubmit">
+                <input type="submit" value="Submit" />
+              </div>
+            </form>
           </div>
-        </form>
-        </div>
+          <div className="full-size" onClick={this.handleOverlay}>
+          </div>
+          <div className="createPostButton">
+            <button onClick={this.handleOverlay}>Click Me!</button>
+          </div>
         </div>
       )
     }else{
