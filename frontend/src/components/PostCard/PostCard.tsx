@@ -53,12 +53,14 @@ const PostCard = (prop) => {
               </div>
             </section>
             <section className="four">
+            {/*
             <div className="iconTop">
               <FaRegCommentAlt />
             </div>
             <div className="numberBot">
               23
             </div>
+            */}
             </section>
             <section className="five">
             <div className="iconTop">

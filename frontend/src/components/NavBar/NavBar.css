@@ -1,0 +1,28 @@
+.navbar {
+  background: hsla(210, 20%, 90%, 1);
+  overflow: hidden;
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  height: 13vh;
+  text-align: center;
+  font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.rightSide{
+  float: right;
+}
+
+.loginSignUpLink{
+  padding: 4vh;
+}
+
+.leftSide{
+  float:left;
+}
+
+.fungiLogo{
+  padding-left: 1vh;
+   width: 20vh;
+}
