@@ -1,56 +1,64 @@
-// src/components/StatefulHello.tsx
 import './NavBar.css';
-import * as React from "react";
-import Fungi from './Fungi2.png';
+import React, { useEffect, useMemo, useState, useRef } from "react";
+import { Link } from 'react-router-dom';
+import Logo from './Fungi2.png';
 
-export interface Props {
-  name: string;
-  enthusiasmLevel?: number;
-}
+function Navbar(props) {
+  const [fName, setFirstName] = useState(null);
 
-interface State {
-  currentEnthusiasm: number;
-}
+  useEffect( () => {
+    setFirstName(props.fName)
+  }, [props.fName])
 
-class NavBar extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { currentEnthusiasm: props.enthusiasmLevel || 1 };
-  }
+  const refreshPage = () => {
+    window.location.reload();
+  };
 
-  onIncrement = () => this.updateEnthusiasm(this.state.currentEnthusiasm + 1);
-  onDecrement = () => this.updateEnthusiasm(this.state.currentEnthusiasm - 1);
 
-  render() {
-    const { name } = this.props;
-
-    if (this.state.currentEnthusiasm <= 0) {
-      throw new Error('You could be a little more enthusiastic. :D');
-    }
-
+  if (fName != null) {
     return (
-      <div className="navbar">
-        <div className="leftSide">
-        <img className="fungiLogo" src={Fungi} alt="" />
+      <div className="Navbar">
+        <div className="Branding">
+          <img src={ Logo } alt="Character Typing"/>
         </div>
-        <div className="rightSide">
-        <div className="loginSignUpLink">
-          SignUp/Login
-        </div>
+
+        <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/multiplayer">Multiplayer</Link></li>
+            <li><Link to="/leaderboard">Leaderboard</Link></li>
+            <li><Link to="/about">About Project</Link></li>
+        </ul>
+
+        <div className="UserInfo">
+          <div className="welcome">Welcome, <Link to={"/profile/"+fName}>{fName}</Link>!</div>
+          <div className="navbar-logout-container">
+            <button className="logout-button" onClick={refreshPage}>Log out</button>
+          </div>
         </div>
       </div>
     );
-  }
+  } else {
+    return (
+      <div className="Navbar">
+        <div className="Branding">
+        <img src={ Logo } alt="Character Typing"/>
+        </div>
 
-  updateEnthusiasm(currentEnthusiasm: number) {
-    if(currentEnthusiasm > 0){
-        this.setState({ currentEnthusiasm });
-    }
+        <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About Project</Link></li>
+        </ul>
+
+        <div className="UserInfo">
+          <div className='welcome'>Welcome, Guest!</div>
+          <div className="navbar-grid">
+            <button className="login-button"><Link to="/login">Log in</Link></button>
+            <button className="signup-button"><Link to="/signup">Sign up</Link></button>
+          </div>
+        </div>
+      </div>
+    )
   }
 }
 
-export default NavBar;
-
-function getExclamationMarks(numChars: number) {
-  return Array(numChars + 1).join('!');
-}
+export default Navbar;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate } from "react-router-dom";
 import './Login.css';
-import Navbar from '../../Components/Navbar/Navbar';
+import Navbar from '../../components/NavBar/NavBar';
 import { Keccak } from 'sha3';
 const axios = require('axios');
 
